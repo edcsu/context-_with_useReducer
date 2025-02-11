@@ -13,24 +13,24 @@ function shoppingCartReducer(state, action) {
             const addItems = [...state.items];
 
             const existingCartItemIndex = addItems.findIndex(
-            (cartItem) => cartItem.id === action.payload
+                (cartItem) => cartItem.id === action.payload
             );
             const existingCartItem = addItems[existingCartItemIndex];
 
             if (existingCartItem) {
-            const updatedItem = {
-                ...existingCartItem,
-                quantity: existingCartItem.quantity + 1,
-            };
-            addItems[existingCartItemIndex] = updatedItem;
+                const updatedItem = {
+                    ...existingCartItem,
+                    quantity: existingCartItem.quantity + 1,
+                };
+                addItems[existingCartItemIndex] = updatedItem;
             } else {
             const product = DUMMY_PRODUCTS.find((product) => product.id === action.payload);
-            addItems.push({
-                id: action.payload,
-                name: product.title,
-                price: product.price,
-                quantity: 1,
-            });
+                addItems.push({
+                    id: action.payload,
+                    name: product.title,
+                    price: product.price,
+                    quantity: 1,
+                });
             }
 
             return {
